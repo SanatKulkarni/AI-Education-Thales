@@ -113,7 +113,7 @@ const InterviewPractice = () => {
 
   const generateQuestions = async (resumeAnalysis) => {
     try {
-      const genAI = new GoogleGenerativeAI('AIzaSyAzJno6phNweWn4MMU4j6LUgcqDfTW_cDk');
+      const genAI = new GoogleGenerativeAI(import.meta.env.VITE_GEMINI_API_KEY);
       const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
 
       const prompt = `Generate exactly 5 interview questions based on this resume analysis. Return ONLY a JSON object in this exact format without any additional text:
@@ -144,7 +144,7 @@ const InterviewPractice = () => {
 
   const analyzeInterview = async () => {
     try {
-      const genAI = new GoogleGenerativeAI('AIzaSyAzJno6phNweWn4MMU4j6LUgcqDfTW_cDk');
+      const genAI = new GoogleGenerativeAI(import.meta.env.VITE_GEMINI_API_KEY);
       const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
 
       const prompt = `Analyze these interview responses and provide:
