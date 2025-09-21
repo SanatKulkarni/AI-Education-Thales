@@ -37,19 +37,18 @@ Developed by **Sanat Kulkarni**, this project is a full-stack web application th
 
 1.  **Clone the repository:**
     ```bash
-    git clone <your-repository-url>
-    cd ai-powered-course-generator
+    cd AI-Education-Thales
     ```
 
 2.  **Install Backend Dependencies:**
     ```bash
-    cd server # or your backend folder name
+    cd backend
     npm install
     ```
 
 3.  **Install Frontend Dependencies:**
     ```bash
-    cd ../client # or your frontend folder name
+    cd ../client
     npm install
     ```
 
