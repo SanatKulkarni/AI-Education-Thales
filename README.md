@@ -48,9 +48,7 @@ Authentication: JWT (JSON Web Tokens), bcryptjs (for password hashing)
 
 Setup and Installation
 
-Clone the repository:
-
-git clone https://github.com/SanatKulkarni/AI-Powered-Course-Generator-MERN/
+Clone the repository
 cd ai-powered-course-generator
 
 # Install Backend Dependencies:
