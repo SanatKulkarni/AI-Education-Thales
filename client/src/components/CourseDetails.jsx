@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import { API_ENDPOINTS } from '../config/api';
 
 const CourseDetails = () => {
   const { courseId } = useParams();
@@ -13,7 +14,7 @@ const CourseDetails = () => {
     const fetchCourseDetails = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await fetch(`http://localhost:5000/api/courses/${courseId}`, {
+        const response = await fetch(API_ENDPOINTS.getCourseById(courseId), {
           headers: {
             'Authorization': `Bearer ${token}`
           }
@@ -35,15 +36,11 @@ const CourseDetails = () => {
     fetchCourseDetails();
   }, [courseId]);
 
-  if (loading) return <div className="p-4">Loading course details...</div>;
-  if (error) return <div className="p-4 text-red-500">Error: {error}</div>;
-  if (!course) return <div className="p-4">Course not found</div>;
-
   const handleGenerateContent = async () => {
     try {
       setGenerating(true);
       const token = localStorage.getItem('token');
-      const response = await fetch(`http://localhost:5000/api/courses/${courseId}/generate-content`, {
+      const response = await fetch(API_ENDPOINTS.generateCourseContent(courseId), {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`
@@ -60,6 +57,10 @@ const CourseDetails = () => {
       setGenerating(false);
     }
   };
+
+  if (loading) return <div className="p-4">Loading course details...</div>;
+  if (error) return <div className="p-4 text-red-500">Error: {error}</div>;
+  if (!course) return <div className="p-4">Course not found</div>;
 
   return (
     <div className="p-6 max-w-4xl mx-auto">

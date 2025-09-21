@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { API_ENDPOINTS } from '../config/api';
 
 const Courses = () => {
   const navigate = useNavigate();
@@ -11,7 +12,7 @@ const Courses = () => {
     const fetchCourses = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await fetch('http://localhost:5000/api/courses', {
+        const response = await fetch(API_ENDPOINTS.COURSES, {
           headers: {
             'Authorization': `Bearer ${token}`
           }

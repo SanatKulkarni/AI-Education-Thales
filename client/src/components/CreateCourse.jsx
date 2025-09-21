@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { API_ENDPOINTS } from '../config/api';
 
 const CreateCourse = () => {
   const navigate = useNavigate();
@@ -18,7 +19,7 @@ const CreateCourse = () => {
     setLoading(true);
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:5000/api/courses/generate', {
+      const response = await fetch(API_ENDPOINTS.GENERATE_COURSE, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -41,7 +42,7 @@ const CreateCourse = () => {
   const handleSave = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:5000/api/courses/save', {
+      const response = await fetch(API_ENDPOINTS.SAVE_COURSE, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

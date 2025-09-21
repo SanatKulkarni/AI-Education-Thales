@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { API_ENDPOINTS } from '../config/api';
 
 const ChapterContent = () => {
   const { courseId, chapterIndex } = useParams();
@@ -8,13 +9,13 @@ const ChapterContent = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [currentContentIndex, setCurrentContentIndex] = useState(0);
-  const [course, setCourse] = useState(null);  // Add this state
+  const [course, setCourse] = useState(null);
 
   useEffect(() => {
     const fetchChapterContent = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await fetch(`http://localhost:5000/api/courses/${courseId}`, {
+        const response = await fetch(API_ENDPOINTS.getCourseById(courseId), {
           headers: {
             'Authorization': `Bearer ${token}`
           }
@@ -23,7 +24,7 @@ const ChapterContent = () => {
         if (!response.ok) throw new Error('Failed to fetch chapter content');
 
         const courseData = await response.json();
-        setCourse(courseData);  // Store the full course data
+        setCourse(courseData);
         setChapter(courseData.chapters[chapterIndex]);
       } catch (err) {
         setError(err.message);
